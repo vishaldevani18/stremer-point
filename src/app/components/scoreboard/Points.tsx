@@ -1,36 +1,13 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import styled from 'styled-components';
+import { PointsContainer, PointsText } from './styles'
 interface CounterProps {
     startNumber: number;
     endNumber: number;
     duration: number
 }
-export const CounterContainer = styled.div`
-    display: flex;
-    align-items: center;
-    font-size:25px;
-    font-weight:500;
-    @media (max-width: 767px) {
-    font-size:20px;
-    margin:15px 0;
-    font-weight:400;
-    }
-`;
-export const CounterText = styled.p`
-    padding-left: 5px;
-    display: flex;
-    align-items: center;
-    color:#bab8b8;
-    font-size:22px;
-    font-weight:300;
-    margin:15px 0;
-    @media (max-width: 767px) {
-        display:none
-    }
-}
-`
-const Score = (props: CounterProps) => {
+
+const Points = (props: CounterProps) => {
     const [count, setCount] = useState(JSON.stringify(props.startNumber))
     useEffect(() => {
         counter(JSON.stringify(props.endNumber), JSON.stringify(props.duration))
@@ -50,7 +27,7 @@ const Score = (props: CounterProps) => {
             if (start === end) clearInterval(timer)
         }, incrementTime)
     }
-    return <CounterContainer>{count}<CounterText>points</CounterText></CounterContainer>
+    return <PointsContainer>{count}<PointsText>points</PointsText></PointsContainer>
 
 }
-export default Score
+export default Points
