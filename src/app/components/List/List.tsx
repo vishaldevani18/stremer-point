@@ -9,11 +9,11 @@ import Counter from '../Counter';
 
 const getOddEven = (rank: number) => {
   if (Number(rank) % 2 == 0) {
-    console.log(rank, "1")
+
     return 1
   }
   else {
-    console.log(rank, "0")
+
     return 0
   }
 

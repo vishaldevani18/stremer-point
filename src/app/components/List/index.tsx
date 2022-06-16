@@ -13,6 +13,9 @@ const List = () => {
       streams: state.streams
     };
   });
+  if(streams){
+    localStorage.setItem('Old',JSON.stringify(streams))
+  }
   const randomizeRecords = () => {
     streamActions.getRandomMap();
     const min = 1;
