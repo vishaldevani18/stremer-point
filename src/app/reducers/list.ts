@@ -21,7 +21,7 @@ export const listReducer = handleActions<RootState.StreamState, ListModel>(
         let row = state[key];
         const minScore = 20;
         const maxScore = 30;
-        const randomScoreAdd = (Math.floor(Math.random() * (maxScore - minScore + 1)) + minScore) * 1000;
+        const randomScoreAdd = (Math.floor(Math.random() * (maxScore - minScore + 1)) + minScore) * 500;
         row.score = row.score + randomScoreAdd;
         state[key] = row;
       })

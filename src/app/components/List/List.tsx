@@ -9,14 +9,11 @@ import Counter from '../Counter';
 
 const getOddEven = (rank: number) => {
   if (Number(rank) % 2 == 0) {
-
     return 1
   }
   else {
-
     return 0
   }
-
 }
 
 export const LeaderBoard = styled.div`
@@ -29,8 +26,9 @@ export const LeaderBoardRow = styled.div<{ rank: number }>`
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0px 20px;
-  border-bottom: 1px solid #f9f9f9;
+  padding: 0px 30px;
+  border-bottom: 1px solid #e1e4ec;
+  border-top: 1px solid #e1e4ec;
   align-items: center;
   position: relative;
   box-sizing: border-box;
@@ -54,18 +52,24 @@ export const RankContainer = styled.div<{ rank: number }>`
     justify-content: center;
     margin-right: 15px;
     position: absolute;
-    left: 48px;
+    left: 57px;
     height: 16px;
     width: 16px;
     bottom: 4px;
     padding:1px;
     background: ${(p) => (RankColors[p.rank] ? RankColors[p.rank].rankbackgroundColor : '#4e69dd')};
+    @media (max-width: 767px) {
+    left: 50px;
+    height: 12px;
+    width: 12px;
+    bottom: 7px;
+    }
   }
 `;
 export const ProfileContainer = styled.div<{ index: number }>`
    {
-    height: 45px;
-    width: 45px;
+    height: 43px;
+    width: 43px;
     color: #fff;
     background: ${(p) => Colors[p.index]};
     font-size: 18px;
@@ -75,6 +79,10 @@ export const ProfileContainer = styled.div<{ index: number }>`
     justify-content: center;
     margin-right: 15px;
     border: 1px solid #c4cdf6;
+    @media (max-width: 767px) {
+      height: 30px;
+      width: 30px;
+      }
   }
 `;
 export const ProfileNameContainer = styled.div<{ rank: number }>`
@@ -82,6 +90,9 @@ export const ProfileNameContainer = styled.div<{ rank: number }>`
   
     font-size: 20px;
     font-weight: 500;
+    @media (max-width: 767px) {
+      font-size: 18px;
+      }
   }
 `;
 export namespace StreamList {

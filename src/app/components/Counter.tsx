@@ -11,6 +11,11 @@ export const CounterContainer = styled.div`
     align-items: center;
     font-size:25px;
     font-weight:500;
+    @media (max-width: 767px) {
+    font-size:20px;
+    margin:15px 0;
+    font-weight:400;
+    }
 `;
 export const CounterText = styled.p`
     padding-left: 5px;
