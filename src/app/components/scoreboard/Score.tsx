@@ -30,7 +30,7 @@ export const CounterText = styled.p`
     }
 }
 `
-const Counter = (props: CounterProps) => {
+const Score = (props: CounterProps) => {
     const [count, setCount] = useState(JSON.stringify(props.startNumber))
     useEffect(() => {
         counter(JSON.stringify(props.endNumber), JSON.stringify(props.duration))
@@ -53,4 +53,4 @@ const Counter = (props: CounterProps) => {
     return <CounterContainer>{count}<CounterText>points</CounterText></CounterContainer>
 
 }
-export default Counter
+export default Score

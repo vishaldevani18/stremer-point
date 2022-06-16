@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'app/reducers';
-import { ListView } from './List';
+import { StreamBoard } from './streamboard';
 import { useListActions } from 'app/actions';
 import { useEffect } from 'react';
-const List = () => {
+const LeaderBoard = () => {
   let randomTime = 2;
   const dispatch = useDispatch();
   const streamActions = useListActions(dispatch);
@@ -13,8 +13,8 @@ const List = () => {
       streams: state.streams
     };
   });
-  if(streams){
-    localStorage.setItem('Old',JSON.stringify(streams))
+  if (streams) {
+    localStorage.setItem('Old', JSON.stringify(streams))
   }
   const randomizeRecords = () => {
     streamActions.getRandomMap();
@@ -33,10 +33,8 @@ const List = () => {
   }, []);
 
   return (
-    <div>
-      <ListView list={streams} />
-    </div>
+    <StreamBoard list={streams} />
   );
 };
 
-export default List;
+export default LeaderBoard;

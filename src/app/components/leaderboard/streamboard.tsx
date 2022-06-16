@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { ListModel } from 'app/models';
 import { Colors, RankColors } from 'app/constants/color';
 import styled from 'styled-components';
-import Counter from '../Counter';
+import Score from '../scoreboard/Score';
 
 
 
@@ -105,7 +105,7 @@ const GetStartNumber = (userID: string, oldData: any) => {
   const startValue = oldData.filter((data: any) => data.userID === userID)
   return startValue.score
 }
-export const ListView = ({ list }: StreamList.Props): JSX.Element => {
+export const StreamBoard = ({ list }: StreamList.Props): JSX.Element => {
   const oldData = JSON.parse(localStorage.getItem('Old') || '')
   const [ids, setIds] = useState(oldData.sort((a: any, b: any) => b.score - a.score).map((data: any) => data.userID))
   const rects = React.useRef(new Map()).current;
@@ -144,7 +144,7 @@ export const ListView = ({ list }: StreamList.Props): JSX.Element => {
               <ProfileContainer index={index}>{list.displayName.charAt(0)}</ProfileContainer>
               <ProfileNameContainer rank={index}>{list.displayName}</ProfileNameContainer>
             </LeftBoardContainer>
-            <Counter startNumber={GetStartNumber(list.userID, oldData)} endNumber={list.score} duration={1}></Counter>
+            <Score startNumber={GetStartNumber(list.userID, oldData)} endNumber={list.score} duration={1}></Score>
           </LeaderBoardRow>
         ))}
     </LeaderBoard>
