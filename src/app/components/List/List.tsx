@@ -3,54 +3,69 @@ import { ListModel } from 'app/models';
 import { Colors, RankColors } from 'app/constants/color';
 import styled from 'styled-components';
 import Counter from '../Counter';
-export const Grid = styled.div`
+
+
+
+
+const getOddEven = (rank: number) => {
+  if (Number(rank) % 2 == 0) {
+    console.log(rank, "1")
+    return 1
+  }
+  else {
+    console.log(rank, "0")
+    return 0
+  }
+
+}
+
+export const LeaderBoard = styled.div`
   border-radius: 10px;
   background: #fff;
   overflow: hidden;
 `;
-export const DivGrid = styled.div<{ rank: number }>`
+export const LeaderBoardRow = styled.div<{ rank: number }>`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 10px 20px;
+  padding: 0px 20px;
   border-bottom: 1px solid #f9f9f9;
   align-items: center;
   position: relative;
   box-sizing: border-box;
-  background: ${(p) => (RankColors[p.rank] ? RankColors[p.rank].rowColor : '#ffff')};
+  color: ${(p) => (RankColors[p.rank] ? RankColors[p.rank].rowTextColor : '#000000')};
+  background: ${(p) => (RankColors[p.rank] ? RankColors[p.rank].rowColor : getOddEven(p.rank + 1) ? '#f0f3fc' : '#ffffff')};
 `;
-export const LeftDiv = styled.div`
+export const LeftBoardContainer = styled.div`
   display: flex;
   align-items: center;
 `;
-export const LeftInnerNumberDiv = styled.div<{ rank: number }>`
+export const RankContainer = styled.div<{ rank: number }>`
    {
     height: 22px;
     width: 22px;
-    border: 1px solid #8c9ea8;
-    background: ${(p) => (RankColors[p.rank] ? RankColors[p.rank].backgroundColor : '#ffff')};
-    color: ${(p) => (RankColors[p.rank] ? RankColors[p.rank].textColor : '#8c9ea8')};
-    font-size: 14px;
+    border: 1px solid #ffffff;
+    color: ${(p) => (RankColors[p.rank] ? RankColors[p.rank].rankTextColor : '#ffff')};
+    font-size: 11px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 15px;
-    @media (max-width: 767px) {
-      position: absolute;
-      left: 37px;
-      height: 16px;
-      width: 16px;
-      bottom: 7px;
-      background: ${(p) => (RankColors[p.rank] ? RankColors[p.rank].backgroundColor : '#ffff')};
-    }
+    position: absolute;
+    left: 48px;
+    height: 16px;
+    width: 16px;
+    bottom: 4px;
+    padding:1px;
+    background: ${(p) => (RankColors[p.rank] ? RankColors[p.rank].rankbackgroundColor : '#4e69dd')};
   }
 `;
-export const LeftInnerProfileDiv = styled.div<{ index: number }>`
+export const ProfileContainer = styled.div<{ index: number }>`
    {
-    height: 30px;
-    width: 30px;
+    height: 45px;
+    width: 45px;
     color: #fff;
     background: ${(p) => Colors[p.index]};
     font-size: 18px;
@@ -62,17 +77,11 @@ export const LeftInnerProfileDiv = styled.div<{ index: number }>`
     border: 1px solid #c4cdf6;
   }
 `;
-export const LeftInnerNameDiv = styled.div`
+export const ProfileNameContainer = styled.div<{ rank: number }>`
    {
-    font-size: 16px;
+  
+    font-size: 20px;
     font-weight: 500;
-  }
-`;
-export const RightDiv = styled.div`
-   {
-    font-size: 16px;
-    color: #467aff;
-    font-weight: bold;
   }
 `;
 export namespace StreamList {
@@ -86,9 +95,7 @@ const GetStartNumber = (userID: string, oldData: any) => {
   return startValue.score
 }
 export const ListView = ({ list }: StreamList.Props): JSX.Element => {
-  console.log("new", list)
   const oldData = JSON.parse(localStorage.getItem('Old') || '')
-  console.log('old', oldData)
   const [ids, setIds] = useState(oldData.sort((a: any, b: any) => b.score - a.score).map((data: any) => data.userID))
   const rects = React.useRef(new Map()).current;
 
@@ -117,19 +124,18 @@ export const ListView = ({ list }: StreamList.Props): JSX.Element => {
     }
   }, ids)
   return (
-    <Grid>
+    <LeaderBoard>
       {list
         .map((list, index) => (
-          <DivGrid rank={index} key={index} id={list.userID} className={'list'}>
-            <LeftDiv>
-              <LeftInnerNumberDiv rank={index}>{index + 1}</LeftInnerNumberDiv>
-              <LeftInnerProfileDiv index={index}>{list.displayName.charAt(0)}</LeftInnerProfileDiv>
-              <LeftInnerNameDiv>{list.displayName}</LeftInnerNameDiv>
-            </LeftDiv>
-            {/* <RightDiv>{list.score}</RightDiv> */}
-            <Counter startNumber={GetStartNumber(list.userID,oldData)} endNumber={list.score} duration={1}></Counter>
-          </DivGrid>
+          <LeaderBoardRow rank={index} key={index} id={list.userID} className={'list'}>
+            <LeftBoardContainer>
+              <RankContainer rank={index}>{index + 1}</RankContainer>
+              <ProfileContainer index={index}>{list.displayName.charAt(0)}</ProfileContainer>
+              <ProfileNameContainer rank={index}>{list.displayName}</ProfileNameContainer>
+            </LeftBoardContainer>
+            <Counter startNumber={GetStartNumber(list.userID, oldData)} endNumber={list.score} duration={1}></Counter>
+          </LeaderBoardRow>
         ))}
-    </Grid>
+    </LeaderBoard>
   );
 };

@@ -9,14 +9,12 @@ export const listReducer = handleActions<RootState.StreamState, ListModel>(
   {
     [ListActions.Type.GET_LIST]: (state, action) => {
       if (action.payload) {
-        
         return [...state];
       }
       return state;
     },
     [ListActions.Type.GET_RANDOM_MAP]: (state, action) => {
       localStorage.setItem('Old',JSON.stringify(state))
-      console.log('oldsa',state)
       const min = 0;
       const max = state.length - 1;
       const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;

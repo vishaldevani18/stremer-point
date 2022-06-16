@@ -1,32 +1,36 @@
 export const Colors = [
-  '#ff7a00',
-  '#a6bfa2',
-  '#557ce0',
-  '#d88ea9',
-  '#d88ea9',
-  '#fdc228',
-  '#b39ef0',
-  '#ffc1c1',
+  '#db481e',
+  '#fae1c0',
+  '#88e929',
+  '#d48da8',
+  '#fac223',
+  '#aab3da',
+  '#0d0a0b',
+  '#a3a9a9',
   '#8f98b7',
   '#d88ea9'
 ];
 export const RankColors = [
   {
     id: 1,
-    backgroundColor: '#ffd953',
-    textColor: '#ff7a00',
-    rowColor: '#fff9e4'
+    rankbackgroundColor: '#f5cb32',
+    rankTextColor: '#7e6309',
+    rowTextColor: '#ffffff',
+    rowColor: '#4e69dd',
+
   },
   {
     id: 2,
-    backgroundColor: '#bdc4d2',
-    textColor: '#ffffff',
-    rowColor: '#eef4ff'
+    rankbackgroundColor: '#bdc4d2',
+    rankTextColor: '#848182',
+    rowTextColor: '#000000',
+    rowColor: '#f0f3fc'
   },
   {
     id: 3,
-    backgroundColor: '#eab99a',
-    textColor: '#ffffff',
-    rowColor: '#fff2ea'
+    rankbackgroundColor: '#ea992e',
+    rankTextColor: '#b46a16',
+    rowTextColor: '#000000',
+    rowColor: '#ffffff'
   }
 ];
