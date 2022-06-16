@@ -28,6 +28,5 @@ const Points = (props: CounterProps) => {
         }, incrementTime)
     }
     return <PointsContainer>{count}<PointsText>points</PointsText></PointsContainer>
-
 }
 export default Points

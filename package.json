@@ -1,5 +1,5 @@
 {
-  "name": "streamer-points-app",
+  "name": "streamer-points-apps",
   "version": "1.0.0",
   "private": true,
   "description": "An react app which shows the points of the campaign in realtime (randonmly currently) and order them as a leaderboard.",
